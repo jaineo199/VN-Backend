@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { UserService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-@Controller('Users')
+@Controller('users')
 export class UsersController {
   constructor(private userService: UserService) {}
 
@@ -13,7 +13,6 @@ export class UsersController {
   async createUser(@Body() createUserDto: CreateUserDto) {
     console.log('createUserDto', createUserDto);
 
-    // return this.userService.createUser(createUserDto);
-    return null;
+    return this.userService.createUser(createUserDto);
   }
 }
