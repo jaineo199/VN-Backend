@@ -9,11 +9,21 @@ export class UserService {
   constructor(@InjectModel(User.name) private userModal: Model<User>) {}
 
   async findAllUser(): Promise<User[]> {
-    return this.userModal.find().exec();
+    try {
+      return await this.userModal.find().exec();
+    } catch (error) {
+      // handle error
+      console.error(error);
+    }
   }
 
   async signUpUser(createUserDto: CreateUserDto): Promise<any> {
-    const createdUser = new this.userModal(createUserDto);
-    return createdUser.save();
+    try {
+      const createdUser = new this.userModal(createUserDto);
+      return await createdUser.save();
+    } catch (error) {
+      // handle error
+      console.error(error);
+    }
   }
 }

@@ -7,10 +7,19 @@ export class UsersController {
 
   @Get()
   async findAllUser() {
-    return this.userService.findAllUser();
+    try {
+      return await this.userService.findAllUser();
+    } catch (error) {
+      console.error(error);
+    }
   }
+
   @Post('/signUp')
   async signUpUser(@Body() createUserDto: CreateUserDto) {
-    return this.userService.signUpUser(createUserDto);
+    try {
+      return await this.userService.signUpUser(createUserDto);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
