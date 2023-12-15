@@ -33,4 +33,27 @@ export class UserService {
       console.error(error);
     }
   }
+
+  async signInUser(userSubmittedSignInData: any): Promise<any> {
+    try {
+      const user = await this.userModal.findOne({
+        emailId: userSubmittedSignInData.emailId,
+      });
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      const isPasswordMatching = await bcrypt.compare(
+        userSubmittedSignInData.password,
+        user.password,
+      );
+      if (!isPasswordMatching) {
+        throw new Error('Invalid credentials');
+      }
+
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
