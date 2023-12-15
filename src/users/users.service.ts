@@ -12,7 +12,7 @@ export class UserService {
     return this.userModal.find().exec();
   }
 
-  async createUser(createUserDto: CreateUserDto): Promise<any> {
+  async signUpUser(createUserDto: CreateUserDto): Promise<any> {
     const createdUser = new this.userModal(createUserDto);
     return createdUser.save();
   }

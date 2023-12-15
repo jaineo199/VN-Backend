@@ -9,10 +9,8 @@ export class UsersController {
   async findAllUser() {
     return this.userService.findAllUser();
   }
-  @Post()
-  async createUser(@Body() createUserDto: CreateUserDto) {
-    console.log('createUserDto', createUserDto);
-
-    return this.userService.createUser(createUserDto);
+  @Post('/signUp')
+  async signUpUser(@Body() createUserDto: CreateUserDto) {
+    return this.userService.signUpUser(createUserDto);
   }
 }
